@@ -1,0 +1,15 @@
+FROM java
+
+COPY /project/target/xxl-job-0.0.1-SNAPSHOT.jar  /usr/src/myapp/app.jar
+
+WORKDIR /usr/src/myapp/
+
+ENV CONFIG_SERVER_URI=http://config:10010 \
+CONFIG_SERVER_PROFILE=dev \
+CONFIG_SERVER_LABEL=daocloud
+
+ENTRYPOINT java -jar app.jar
+
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+EXPOSE 8010
