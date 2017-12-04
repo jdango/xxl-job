@@ -1,0 +1,9 @@
+FROM 192.168.15.57/daocloud/maven:3.5.2-dev
+
+#RUN rm -rf /root/.m2/settings-docker.xml
+#COPY settings.xml /root/.m2/settings-docker.xml
+WORKDIR /project
+ADD . /project
+
+RUN mvn package -Dmaven.test.skip=true
+CMD ["mvn"]
